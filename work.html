@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaseen Patel - Work</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="work-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Yaseen</span>
+                <span class="logo-dot"></span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="resume.html" class="nav-link">Resume</a></li>
+                    <li><a href="work.html" class="nav-link active">Work</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="hire-btn">Hire me</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="work-content">
+        <div class="work-container">
+            <!-- Left Section - Project Details -->
+            <div class="project-details">
+                <div class="project-number">01</div>
+                <h1 class="project-title">Full-Stack AI Project</h1>
+                <p class="project-description">
+                    Created a full-stack AI Customer Support Chatbot that responds to all types of messages and inquires. Leverages OpenAI's API to provide intuitive responses. Project delivered using an AWS EC2 instance.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-item">Next.js</span>
+                    <span class="tech-item">React</span>
+                    <span class="tech-item">OpenAI</span>
+                    <span class="tech-item">AWS EC2</span>
+                </div>
+                <div class="project-actions">
+                    <a href="#" class="action-btn" title="Live Demo">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a href="https://github.com/yaseenp24/AI-chatbot" class="action-btn" title="GitHub Repository" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Section - Project Visual -->
+            <div class="project-visual">
+                <div class="chatbot-interface" id="chatbot-interface">
+                    <div class="chat-messages">
+                        <div class="message agent">
+                            <div class="message-content">
+                                Hi! I'm the Headstarter support agent, how can I assist you today?
+                            </div>
+                        </div>
+                        <div class="message user">
+                            <div class="message-content">
+                                What do the 5 circles in the olympics logo represent?
+                            </div>
+                        </div>
+                        <div class="message agent">
+                            <div class="message-content">
+                                The five interlocking rings in the Olympic logo represent the five continents of the world (Africa, the Americas, Asia, Europe, and Oceania) coming together in unity and solidarity through the celebration of the Olympic Games. The colors of the rings (blue, yellow, black, green, and red) were chosen because every country's flag contains at least one of these colors.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="Message" class="message-input">
+                        <button class="send-btn">SEND</button>
+                    </div>
+                </div>
+                
+                <div class="fantasy-interface" id="fantasy-interface" style="display: none;">
+                    <div class="fantasy-header">
+                        <h3>UFA Fantasy League</h3>
+                        <span class="league-status">Active • 80 Players</span>
+                    </div>
+                    <div class="fantasy-content">
+                        <div class="player-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Top Scorer</span>
+                                <span class="stat-value">Mike Johnson</span>
+                                <span class="stat-points">1,247 pts</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">League Leader</span>
+                                <span class="stat-value">Team Warriors</span>
+                                <span class="stat-points">12-3</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Performance</span>
+                                <span class="stat-value">40% faster</span>
+                                <span class="stat-points">queries</span>
+                            </div>
+                        </div>
+                        <div class="fantasy-actions">
+                            <button class="fantasy-btn">View Standings</button>
+                            <button class="fantasy-btn">Player Stats</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="portfolio-interface" id="portfolio-interface" style="display: none;">
+                    <div class="portfolio-preview">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-nav">
+                                <span>Home</span>
+                                <span>Resume</span>
+                                <span>Work</span>
+                                <span>Contact</span>
+                            </div>
+                            <div class="preview-main">
+                                <div class="preview-text">
+                                    <h4>Yaseen Patel</h4>
+                                    <p>Software Engineer</p>
+                                </div>
+                                <div class="preview-image"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="project-nav">
+            <button class="nav-btn prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-btn next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <script src="work-script.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html> 

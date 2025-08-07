@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaseen Patel - Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="resume-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Yaseen</span>
+                <span class="logo-dot"></span>
+            </div>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="resume.html" class="nav-link active">Resume</a></li>
+                    <li><a href="work.html" class="nav-link">Work</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <button class="hire-btn">Hire me</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="resume-content">
+        <div class="resume-container">
+            <!-- Left Sidebar Navigation -->
+            <div class="sidebar">
+                <button class="sidebar-btn active" data-section="experience">
+                    Experience
+                </button>
+                <button class="sidebar-btn" data-section="education">
+                    Education
+                </button>
+                <button class="sidebar-btn" data-section="skills">
+                    Skills
+                </button>
+                <button class="sidebar-btn" data-section="about">
+                    About me
+                </button>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="content-area">
+                <!-- Experience Section -->
+                <div class="content-section active" id="experience">
+                    <h1 class="section-title">My Experience</h1>
+                    
+                    <div class="experience-grid">
+                        <div class="experience-card">
+                            <div class="experience-date">Jan 2025 - Current</div>
+                            <div class="experience-title">Undergraduate AI/ML Researcher</div>
+                            <div class="experience-company">
+                                <span class="bullet">•</span>
+                                BiasLab @ UCI
+                            </div>
+                        </div>
+                        
+                        <div class="experience-card">
+                            <div class="experience-date">Oct 2024 - Jan 2025</div>
+                            <div class="experience-title">Data Engineering Intern</div>
+                            <div class="experience-company">
+                                <span class="bullet">•</span>
+                                Curtin Maritime
+                            </div>
+                        </div>
+
+                        <div class="experience-card">
+                            <div class="experience-date">Jun 2024 - Aug 2024</div>
+                            <div class="experience-title">Software Engineering Intern</div>
+                            <div class="experience-company">
+                                <span class="bullet">•</span>
+                                Headstarter AI
+                            </div>
+                        </div>   
+
+                        <div class="experience-card">
+                            <div class="experience-date">Oct 2023 - Jun 2024</div>
+                            <div class="experience-title">Software Engineering Lead</div>
+                            <div class="experience-company">
+                                <span class="bullet">•</span>
+                                Artificial Intelligence Club @ UCI
+                            </div>
+                        </div>                                            
+                    </div>
+                </div>
+
+                <!-- Education Section -->
+                <div class="content-section" id="education">
+                    <h1 class="section-title">My Education</h1>
+                    
+                    <div class="experience-grid">
+                        <div class="experience-card">
+                            <div class="experience-date">2021 - 2021</div>
+                            <div class="experience-title">B.S. in Computer Science</div>
+                            <div class="experience-company">
+                                <span class="bullet">•</span>
+                                University of California, Irvine
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="content-section" id="skills">
+                    <h1 class="section-title">My Skills</h1>
+                    
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3 class="skill-title">Programming Languages</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">JavaScript</span>
+                                <span class="skill-item">Python</span>
+                                <span class="skill-item">Java</span>
+                                <span class="skill-item">SQL</span>
+                                <span class="skill-item">C++</span>
+                                <span class="skill-item">C</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3 class="skill-title">Web Technologies</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">React</span>
+                                <span class="skill-item">Node.js</span>
+                                <span class="skill-item">HTML/CSS</span>
+                                <span class="skill-item">MongoDB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3 class="skill-title">Tools & Platforms</h3>
+                            <div class="skill-items">
+                                <span class="skill-item">Git</span>
+                                <span class="skill-item">Docker</span>
+                                <span class="skill-item">AWS</span>
+                                <span class="skill-item">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section -->
+                <div class="content-section" id="about">
+                    <h1 class="section-title">About Me</h1>
+                    
+                    <div class="about-content">
+                        <div class="about-info-grid">
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <span class="info-label">Name:</span>
+                                    <span class="info-value">Yaseen Patel</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Phone:</span>
+                                    <span class="info-value">+1(949)742-9286</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <span class="info-label">Instagram:</span>
+                                    <span class="info-value">@yaseen.patell</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freelance:</span>
+                                    <span class="info-value">Available</span>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <span class="info-label">Languages:</span>
+                                    <span class="info-value">English</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location:</span>
+                                    <span class="info-value">California, USA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="resume-script.js"></script>
+    <script src="page-transitions.js"></script>
+</body>
+</html> 
