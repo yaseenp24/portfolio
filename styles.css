@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: lch(8.29% 0.75 290.47);
+    background-color: #0a0a0a;
     color: #ffffff;
     line-height: 1.6;
     overflow-x: hidden;
@@ -55,7 +55,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background-color: lch(8.29% 0.75 290.47);
+    background-color: #0a0a0a;
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
@@ -340,7 +340,7 @@ body {
 
 /* Footer/Statistics Styles */
 .footer {
-    background-color: lch(8.29% 0.75 290.47);
+    background-color: #0a0a0a;
     padding: 0rem 0;
     margin-top: 2rem;
 }
@@ -377,7 +377,7 @@ body {
 /* Contact Section */
 .contact-section {
     padding: 6rem 0;
-    background-color: lch(8.29% 0.75 290.47);
+    background-color: #0a0a0a;
     min-height: 100vh;
     display: flex;
     align-items: center;
