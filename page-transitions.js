@@ -326,21 +326,56 @@ class PageTransition {
             }, 200);
         }
 
+        // Fallback: If some other handler flips the visible interface without
+        // updating the left details, keep them in sync by observing changes
+        function getVisibleIndex() {
+            const order = ['chatbot-interface', 'fantasy-interface', 'portfolio-interface'];
+            for (let i = 0; i < order.length; i += 1) {
+                const el = document.getElementById(order[i]);
+                if (el && el.style.display !== 'none') {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        function syncDetailsToVisible() {
+            const i = getVisibleIndex();
+            updateProject(i);
+        }
+
+        // Observe display changes on interface containers
+        ['chatbot-interface', 'fantasy-interface', 'portfolio-interface'].forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const observer = new MutationObserver(() => {
+                // Debounce via microtask
+                Promise.resolve().then(syncDetailsToVisible);
+            });
+            observer.observe(el, { attributes: true, attributeFilter: ['style', 'class'] });
+        });
+
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + projects.length) % projects.length;
                 updateProject(currentIndex);
+                // Also ensure details match whatever ends up visible
+                setTimeout(syncDetailsToVisible, 0);
             });
         }
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % projects.length;
                 updateProject(currentIndex);
+                // Also ensure details match whatever ends up visible
+                setTimeout(syncDetailsToVisible, 0);
             });
         }
 
         // Ensure initial state is consistent
         updateProject(currentIndex);
+        // And one more sync to be safe
+        setTimeout(syncDetailsToVisible, 0);
     }
 
     initContactScripts() {
