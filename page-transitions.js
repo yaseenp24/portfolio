@@ -52,6 +52,12 @@ class PageTransition {
                 const parser = new DOMParser();
                 const newDoc = parser.parseFromString(html, 'text/html');
                 
+                // Sync stylesheets so page-specific CSS is applied
+                const newStylesheetHrefs = Array.from(newDoc.querySelectorAll('link[rel="stylesheet"]'))
+                    .map(link => link.getAttribute('href'))
+                    .filter(Boolean);
+                this.syncStylesheets(newStylesheetHrefs);
+
                 // Extract the main content
                 const newMain = newDoc.querySelector('main');
                 const currentMain = document.querySelector('main');
@@ -88,6 +94,34 @@ class PageTransition {
             })
             .finally(() => {
                 this.isTransitioning = false;
+            });
+    }
+
+    // Ensure per-page styles (like resume-styles.css, work-styles.css) are loaded
+    // when swapping content via AJAX, and remove styles no longer needed.
+    syncStylesheets(newHrefs) {
+        const head = document.head;
+        const currentLinks = Array.from(head.querySelectorAll('link[rel="stylesheet"]'));
+        const currentHrefs = currentLinks.map(l => l.getAttribute('href'));
+
+        // Add any missing stylesheets from the target page
+        newHrefs.forEach(href => {
+            if (!currentHrefs.includes(href)) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                link.setAttribute('data-dynamic-style', 'true');
+                head.appendChild(link);
+            }
+        });
+
+        // Remove previously added page-specific styles not required on the new page
+        Array.from(head.querySelectorAll('link[rel="stylesheet"][data-dynamic-style="true"]'))
+            .forEach(link => {
+                const href = link.getAttribute('href');
+                if (!newHrefs.includes(href)) {
+                    head.removeChild(link);
+                }
             });
     }
 
