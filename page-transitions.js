@@ -57,7 +57,7 @@ class PageTransition {
                     .map(link => link.getAttribute('href'))
                     .filter(Boolean);
                 this.syncStylesheets(newStylesheetHrefs);
-
+                
                 // Extract the main content
                 const newMain = newDoc.querySelector('main');
                 const currentMain = document.querySelector('main');
@@ -66,39 +66,42 @@ class PageTransition {
                     // Replace the main content
                     currentMain.innerHTML = newMain.innerHTML;
                     
-                    // Update the page title
-                    const newTitle = newDoc.querySelector('title');
-                    if (newTitle) {
-                        document.title = newTitle.textContent;
-                    }
-
-                    // Sync footer: add/remove based on destination page
-                    const newFooter = newDoc.querySelector('footer');
-                    const currentFooter = document.querySelector('footer');
-                    if (newFooter) {
-                        const clonedFooter = newFooter.cloneNode(true);
-                        if (currentFooter) {
-                            currentFooter.replaceWith(clonedFooter);
-                        } else {
-                            document.body.appendChild(clonedFooter);
+                    // Dynamically load any page-specific scripts and then reinit
+                    this.syncScripts(newDoc).then(() => {
+                        // Update the page title
+                        const newTitle = newDoc.querySelector('title');
+                        if (newTitle) {
+                            document.title = newTitle.textContent;
                         }
-                    } else if (currentFooter) {
-                        currentFooter.remove();
-                    }
-                    
-                    // Update active navigation state
-                    this.updateActiveNav(url);
-                    
-                    // Update browser history
-                    if (updateHistory) {
-                        window.history.pushState({ page: url }, '', url);
-                    }
-                    
-                    // Add page load animation
-                    this.addPageLoadAnimation();
-                    
-                    // Reinitialize page-specific scripts
-                    this.reinitializeScripts(url);
+                        
+                        // Sync footer: add/remove based on destination page
+                        const newFooter = newDoc.querySelector('footer');
+                        const currentFooter = document.querySelector('footer');
+                        if (newFooter) {
+                            const clonedFooter = newFooter.cloneNode(true);
+                            if (currentFooter) {
+                                currentFooter.replaceWith(clonedFooter);
+                            } else {
+                                document.body.appendChild(clonedFooter);
+                            }
+                        } else if (currentFooter) {
+                            currentFooter.remove();
+                        }
+                        
+                        // Update active navigation state
+                        this.updateActiveNav(url);
+                        
+                        // Update browser history
+                        if (updateHistory) {
+                            window.history.pushState({ page: url }, '', url);
+                        }
+                        
+                        // Add page load animation
+                        this.addPageLoadAnimation();
+                        
+                        // Reinitialize page-specific scripts (now that scripts are loaded)
+                        this.reinitializeScripts(url);
+                    });
                 }
             })
             .catch(error => {
@@ -109,6 +112,37 @@ class PageTransition {
             .finally(() => {
                 this.isTransitioning = false;
             });
+    }
+
+    // Dynamically load <script src="..."> from the new document so page-specific
+    // functionality becomes available when navigating via transitions
+    syncScripts(newDoc) {
+        const head = document.head;
+        const newSrcs = Array.from(newDoc.querySelectorAll('script[src]'))
+            .map(s => s.getAttribute('src'))
+            .filter(Boolean);
+
+        // Remove previously injected dynamic scripts
+        Array.from(head.querySelectorAll('script[data-dynamic-script="true"]'))
+            .forEach(s => head.removeChild(s));
+
+        const loadPromises = [];
+        newSrcs.forEach(src => {
+            // Skip this transitions script itself if present
+            if (src.includes('page-transitions.js')) return;
+            const script = document.createElement('script');
+            script.src = src;
+            script.defer = true;
+            script.setAttribute('data-dynamic-script', 'true');
+            const p = new Promise((resolve) => {
+                script.onload = () => resolve();
+                script.onerror = () => resolve(); // resolve anyway to avoid blocking
+            });
+            head.appendChild(script);
+            loadPromises.push(p);
+        });
+
+        return Promise.all(loadPromises);
     }
 
     // Ensure per-page styles (like resume-styles.css, work-styles.css) are loaded
