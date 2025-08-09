@@ -71,6 +71,20 @@ class PageTransition {
                     if (newTitle) {
                         document.title = newTitle.textContent;
                     }
+
+                    // Sync footer: add/remove based on destination page
+                    const newFooter = newDoc.querySelector('footer');
+                    const currentFooter = document.querySelector('footer');
+                    if (newFooter) {
+                        const clonedFooter = newFooter.cloneNode(true);
+                        if (currentFooter) {
+                            currentFooter.replaceWith(clonedFooter);
+                        } else {
+                            document.body.appendChild(clonedFooter);
+                        }
+                    } else if (currentFooter) {
+                        currentFooter.remove();
+                    }
                     
                     // Update active navigation state
                     this.updateActiveNav(url);
@@ -279,6 +293,35 @@ class PageTransition {
                 // Clean up
                 document.body.removeChild(link);
             });
+        }
+
+        // Re-init stats counter animation if the footer exists
+        const statsContainer = document.querySelector('.stats-container');
+        if (statsContainer) {
+            const observerOptions = { threshold: 0.5, rootMargin: '0px 0px -100px 0px' };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumbers = entry.target.querySelectorAll('.stat-number');
+                        statNumbers.forEach(stat => {
+                            const target = parseInt(stat.textContent);
+                            let current = 0;
+                            const increment = target / 50;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    stat.textContent = target;
+                                    clearInterval(timer);
+                                } else {
+                                    stat.textContent = Math.floor(current);
+                                }
+                            }, 30);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            observer.observe(statsContainer);
         }
     }
 }
