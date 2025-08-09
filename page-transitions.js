@@ -204,6 +204,12 @@ class PageTransition {
     }
 
     initWorkScripts() {
+        // Ensure home-only footer is not present on work page when navigating via transitions
+        const strayFooter = document.querySelector('footer');
+        if (strayFooter) {
+            strayFooter.remove();
+        }
+
         // Reinitialize work page functionality
         const interfaces = ['chatbot-interface', 'fantasy-interface', 'portfolio-interface'];
         const prevBtn = document.querySelector('.prev-btn');
