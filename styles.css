@@ -42,7 +42,7 @@ body {
 /* Page Transition Classes */
 .page-transition {
     animation: fadeOut 0.3s ease-in-out forwards;
-}
+} 
 
 .page-loading {
     opacity: 0;
