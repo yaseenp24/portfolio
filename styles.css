@@ -1,10 +1,10 @@
 /* Reset and Base Styles */
 * {
     margin: 0;
-    padding: 0;
+    padding: 0; 
     box-sizing: border-box;
 }
- 
+  
 body {
     font-family: 'Inter', sans-serif;
     background-color: #0a0a0a;
@@ -42,7 +42,7 @@ body {
 /* Page Transition Classes */
 .page-transition {
     animation: fadeOut 0.3s ease-in-out forwards;
-}
+} 
 
 .page-loading {
     opacity: 0;
@@ -100,7 +100,7 @@ body {
     background-color: #00ff88;
     border-radius: 50%;
 }
-
+ 
 .nav-menu {
     display: flex;
     align-items: center;
