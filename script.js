@@ -34,22 +34,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// Download resume button functionality
-document.querySelector('.download-btn').addEventListener('click', function() {
-    // Create a link element to trigger download
-    const link = document.createElement('a');
-    link.href = 'PatelYaseenResume.pdf';
-    link.download = 'PatelYaseenResume.pdf';
-    link.style.display = 'none';
-    
-    // Add to document and trigger download
-    document.body.appendChild(link);
-    link.click();
-    
-    // Clean up
-    document.body.removeChild(link);
-});
-
 // Hire me button functionality
 document.querySelector('.hire-btn').addEventListener('click', function() {
     // Scroll to contact section
